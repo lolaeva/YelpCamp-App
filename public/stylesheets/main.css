@@ -1,0 +1,39 @@
+  
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.newh1{
+    text-align: center;
+}
+.newForm {
+    width: 30%;
+    margin: 25px auto;
+}
+/* .landing {
+    text-align: center;
+} */
+
+.show{
+    text-align: center;
+}
+
+.show-content {
+    margin: 20px auto;
+}
+
+.delete-form {
+    display: inline;
+}

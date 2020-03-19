@@ -1,0 +1,29 @@
+<%- include("../partials/header") %>
+
+<div class="ui container">
+    <h1 class="newh1">Create a new campground</h1>
+    <div class="row">
+        <div class="newForm">
+            <form action="/campgrounds" method="POST">
+                <div class="form-group"> <!--adds spacing between form inputs-->
+                    <input class="form-control" type="text" name="name" id="" placeholder="name" required>
+                </div>
+                <div class="form-group"> <!--adds spacing between form inputs-->
+                    <input class="form-control" type="number" name="price" id="" placeholder="price" min="0.01" step="0.01">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="image" id="" placeholder="image url" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="description" id="" placeholder="description">
+                </div>
+                <div class="form-group">
+                    <button class="ui fluid primary basic button">Submit</button>
+                </div>
+            </form>   
+            <a href="/campgrounds">Go Back</a>     
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
