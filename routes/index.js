@@ -23,13 +23,18 @@ router.get('/register', (req, res) => {
 
 // handle signup logic
 router.post('/register', (req, res) => {
-    User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
+    var newUser = new User ({
+        username: req.body.username,
+        email: req.body.email,
+        avatar: req.body.avatar
+    });
+    User.register(newUser, req.body.password, (err, user) => {
         if(err){
             req.flash('error', err.message); // display the actual error
             return res.render("register", {"error": err.message}); // set err.message to error
         }
         passport.authenticate('local')(req,res, function() {
-            req.flash('success', 'Welcome to Yelpcamp '+ user.username); 
+            req.flash('success', 'Successfully signed up! Welcome '+ user.username); 
             res.redirect('/campgrounds');
         });
     });
@@ -39,20 +44,6 @@ router.post('/register', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login');
 });
-
-// //handling login logic
-// router.post('/login', function(req, res, next) {
-//     passport.authenticate('local', function(err, user, info) {
-//       if (err) { return next(err); }
-//       if (!user) { return res.redirect('/login'); }
-//       req.logIn(user, function(err) {
-//         if (err) { return next(err); }
-//         var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/campgrounds';
-//         delete req.session.redirectTo;
-//         res.redirect(redirectTo);
-//       });
-//     })(req, res, next);
-//   });
 
 // Handle login logic. passport.authenticate is middleware
 router.post('/login', passport.authenticate('local', 
@@ -69,6 +60,17 @@ router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success', 'Successfully logged out');
     res.redirect('/')
+});
+
+// USERS PROFILE
+router.get('/users/:id', (req, res) => {
+    User.findById(req.params.id, (err, foundUser) =>{
+        if(err){
+            req.flash('error', 'Something went wrong');
+            res.redirect('back');
+        }
+        res.render('users/show', {user: foundUser});
+    });
 });
 
 

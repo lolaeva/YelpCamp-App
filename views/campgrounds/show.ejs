@@ -22,7 +22,9 @@
                         <h4><a href=""><%= campground.name %></a></h4>
                         <p><%= campground.description %></p>
                         <p>
-                            <em>Submitted by <%= campground.author.username %></em> 
+                            <em>Submitted by: 
+                                <a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>, 
+                                <%= moment(campground.createdAt).fromNow() %> </em> 
                         </p>
                         <!-- if user is not logged in or does not own campground, hide edit and delete buttons -->
                         <% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
