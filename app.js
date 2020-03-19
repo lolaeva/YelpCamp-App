@@ -23,8 +23,8 @@ const indexRoutes      = require('./routes/index'),
       commentRoutes    = require('./routes/comments');
 
 // APP CONFIG
-console.log(process.env.DATABASEURL)
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true, useUnifiedTopology: true });
+var url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp_v12'
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 // mongoose.connect('mongodb+srv://lolaeva:Todoslocos1@cluster0-ysxdf.mongodb.net/yelp_camp?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useFindAndModify', false); // to prevent deprecation warning
 app.use(bodyParser.urlencoded({extended: true}));
