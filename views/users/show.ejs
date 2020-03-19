@@ -3,8 +3,20 @@
 <div class="row">
     <div class="col-md-4">
         <h2><%= user.username %></h2>
-        <img src="<%= user.avatar %>" alt="user profile image">
+        <div class="thumbnail">
+            <img src="<%= user.avatar %>" alt="user profile image">
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h3><%= user.username %>'s Campgrounds</h3>
+        <ul>
+            <% campgrounds.forEach(function(campground){ %>
+                <li>
+                    <a href="/campgrounds/<%= campground.id %>"><%= campground.name %></a> 
+                </li>
+            <% }); %>    
+        </ul>
     </div>
 </div>
-<a href="/campgrounds">Go Back</a>     
+<a href="/campgrounds/<%= campgrounds.id %><%= campgrounds.name%>">Go Back</a>     
 <%- include("../partials/footer") %>        

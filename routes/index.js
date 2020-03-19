@@ -69,7 +69,13 @@ router.get('/users/:id', (req, res) => {
             req.flash('error', 'Something went wrong');
             res.redirect('back');
         }
-        res.render('users/show', {user: foundUser});
+        Campground.find().where('author.id').equals(foundUser._id).exec((err, campgrounds) =>{
+            if(err){
+                req.flash('error', 'Something went wrong');
+                res.redirect('back');
+            } 
+            res.render('users/show', {user: foundUser, campgrounds: campgrounds});
+        })
     });
 });
 

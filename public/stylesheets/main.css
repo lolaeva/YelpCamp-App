@@ -37,3 +37,7 @@
 .delete-form {
     display: inline;
 }
+
+#footer {
+    margin-top: 50px;
+}
