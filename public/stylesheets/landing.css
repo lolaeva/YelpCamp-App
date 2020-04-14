@@ -9,6 +9,10 @@ body {
     padding-top: 40vh;
 }
 
+#footer {
+    display: none;
+}
+
 #landing-header h1 {
     color: #fff;
 }
